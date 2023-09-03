@@ -4,7 +4,7 @@
     <title>Streaming Random Numbers</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script>
-        const socket = new WebSocket(`ws://127.0.0.1:8000/ws`);
+        const socket = new WebSocket(`ws://192.168.254.46:8000/ws`);
         socket.addEventListener("open", (event) => {
             console.log("opened");
         });
