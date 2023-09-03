@@ -11,11 +11,11 @@ app = FastAPI()
 app.cs_pin = 24
 app.clock_pin = 23
 app.data_pin1 = 22
-#app.data_pin2 = 18
+app.data_pin2 = 18
 app.units = "f"
 app.bb = breadboard(app.cs_pin, app.clock_pin)
 app.thermocouple1 = MAX6675(app.clock_pin, app.data_pin1, app.units)
-#app.thermocouple2 = MAX6675(app.clock_pin, app.data_pin2, app.units)
+app.thermocouple2 = MAX6675(app.clock_pin, app.data_pin2, app.units)
 
 templates = Jinja2Templates(directory="templates")
 
@@ -35,13 +35,15 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             try:
                 app.bb.wake()
-                print("bread is awake")
+                #print("bread is awake")
                 tc1 = app.thermocouple1.get()
-                #tc2 = app.thermocouple2.get()
+                print("tc1: "+str(tc1))
+                tc2 = app.thermocouple2.get()
+                print("tc2: "+str(tc2))
                 app.bb.sleep()
             #number = random.randint(1, 100)
                 for ws in connected_websockets:
-                    await ws.send_text(str(tc1))
+                    await ws.send_text("Temp 1: "+ str(tc1)+" Temp 2: " + str(tc2))
                 await asyncio.sleep(1)
                 
             except MAX6675Error as e:

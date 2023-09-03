@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Streaming Random Numbers</title>
+    <title>Smoker Info</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script>
         const socket = new WebSocket(`ws://192.168.254.46:8000/ws`);
@@ -27,9 +27,9 @@
 <body>
     <section class="section">
         <div class="container">
-            <h1 class="title">Streaming Random Numbers</h1>
+            <h1 class="title">Smoker Temperatures</h1>
             <div class="box">
-                <p class="subtitle">Current Number: <span id="number"></span></p>
+                <p class="subtitle">Smoker Info: <span id="number"></span></p>
             </div>
         </div>
     </section>
